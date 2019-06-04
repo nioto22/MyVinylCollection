@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1E1FBEDEAA77AAECC194810 /* Pods_MyVinylCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5F00575BE2B37615EE38F7 /* Pods_MyVinylCollection.framework */; };
 		CD15C3FC22A526030022F0E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C3FB22A526030022F0E5 /* AppDelegate.swift */; };
 		CD15C3FE22A526030022F0E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C3FD22A526030022F0E5 /* HomeViewController.swift */; };
 		CD15C40122A526030022F0E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD15C3FF22A526030022F0E5 /* Main.storyboard */; };
@@ -15,9 +16,23 @@
 		CD15C40922A526040022F0E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD15C40722A526040022F0E5 /* LaunchScreen.storyboard */; };
 		CD15C41522A529B20022F0E5 /* RoundedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C41422A529B20022F0E5 /* RoundedUIView.swift */; };
 		CD15C41A22A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C41922A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift */; };
+		CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */; };
+		CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */; };
+		CD937EA422A6770700847B6B /* SmallCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */; };
+		CD937EA622A6771C00847B6B /* MediumCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA522A6771C00847B6B /* MediumCoversCollectionViewCell.swift */; };
+		CD937EA822A6774300847B6B /* LargeCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA722A6774300847B6B /* LargeCoversCollectionViewCell.swift */; };
+		CD937EAA22A6779F00847B6B /* ListViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA922A6779F00847B6B /* ListViewTableViewCell.swift */; };
+		CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EAB22A6A42000847B6B /* LoginViewController.swift */; };
+		CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EAD22A6C65400847B6B /* CollectionViewController.swift */; };
+		CD937EB022A6C66100847B6B /* WantlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EAF22A6C66100847B6B /* WantlistViewController.swift */; };
+		CD937EB222A6C66F00847B6B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EB122A6C66F00847B6B /* SearchViewController.swift */; };
+		CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EB322A6C67B00847B6B /* BarCodeViewController.swift */; };
+		CD937EB722A6D1B900847B6B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EB622A6D1B900847B6B /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E067AEEB18BDFF8E737DDA4 /* Pods-MyVinylCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyVinylCollection.debug.xcconfig"; path = "Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection.debug.xcconfig"; sourceTree = "<group>"; };
+		75A85F0A0CE32B7D9ECF7DA2 /* Pods-MyVinylCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyVinylCollection.release.xcconfig"; path = "Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection.release.xcconfig"; sourceTree = "<group>"; };
 		CD15C3F822A526030022F0E5 /* MyVinylCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyVinylCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD15C3FB22A526030022F0E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD15C3FD22A526030022F0E5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +43,19 @@
 		CD15C40A22A526040022F0E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD15C41422A529B20022F0E5 /* RoundedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIView.swift; sourceTree = "<group>"; };
 		CD15C41922A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+MyVinylCollection.swift"; sourceTree = "<group>"; };
+		CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIButton.swift; sourceTree = "<group>"; };
+		CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCoversCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD937EA522A6771C00847B6B /* MediumCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCoversCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD937EA722A6774300847B6B /* LargeCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCoversCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD937EA922A6779F00847B6B /* ListViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewTableViewCell.swift; sourceTree = "<group>"; };
+		CD937EAB22A6A42000847B6B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CD937EAD22A6C65400847B6B /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		CD937EAF22A6C66100847B6B /* WantlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantlistViewController.swift; sourceTree = "<group>"; };
+		CD937EB122A6C66F00847B6B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CD937EB322A6C67B00847B6B /* BarCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeViewController.swift; sourceTree = "<group>"; };
+		CD937EB622A6D1B900847B6B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FE5F00575BE2B37615EE38F7 /* Pods_MyVinylCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyVinylCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +63,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E1FBEDEAA77AAECC194810 /* Pods_MyVinylCollection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F4040AD0DFF624D8CF7B709 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE5F00575BE2B37615EE38F7 /* Pods_MyVinylCollection.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2B4162A89610F1D00D4F314 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E067AEEB18BDFF8E737DDA4 /* Pods-MyVinylCollection.debug.xcconfig */,
+				75A85F0A0CE32B7D9ECF7DA2 /* Pods-MyVinylCollection.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CD15C3EF22A526030022F0E5 = {
 			isa = PBXGroup;
 			children = (
 				CD15C3FA22A526030022F0E5 /* MyVinylCollection */,
 				CD15C3F922A526030022F0E5 /* Products */,
+				A2B4162A89610F1D00D4F314 /* Pods */,
+				0F4040AD0DFF624D8CF7B709 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +113,7 @@
 				CD15C3FF22A526030022F0E5 /* Main.storyboard */,
 				CD15C41122A529540022F0E5 /* ViewController */,
 				CD15C41222A529650022F0E5 /* Cells */,
+				CD937EB522A6D1A100847B6B /* Base */,
 				CD15C41322A529920022F0E5 /* Utils */,
 				CD15C40722A526040022F0E5 /* LaunchScreen.storyboard */,
 				CD15C40A22A526040022F0E5 /* Info.plist */,
@@ -77,6 +126,11 @@
 			isa = PBXGroup;
 			children = (
 				CD15C3FD22A526030022F0E5 /* HomeViewController.swift */,
+				CD937EAB22A6A42000847B6B /* LoginViewController.swift */,
+				CD937EAD22A6C65400847B6B /* CollectionViewController.swift */,
+				CD937EAF22A6C66100847B6B /* WantlistViewController.swift */,
+				CD937EB122A6C66F00847B6B /* SearchViewController.swift */,
+				CD937EB322A6C67B00847B6B /* BarCodeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -84,6 +138,11 @@
 		CD15C41222A529650022F0E5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */,
+				CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */,
+				CD937EA522A6771C00847B6B /* MediumCoversCollectionViewCell.swift */,
+				CD937EA722A6774300847B6B /* LargeCoversCollectionViewCell.swift */,
+				CD937EA922A6779F00847B6B /* ListViewTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -93,8 +152,17 @@
 			children = (
 				CD15C41422A529B20022F0E5 /* RoundedUIView.swift */,
 				CD15C41922A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift */,
+				CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CD937EB522A6D1A100847B6B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				CD937EB622A6D1B900847B6B /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,9 +172,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CD15C40D22A526040022F0E5 /* Build configuration list for PBXNativeTarget "MyVinylCollection" */;
 			buildPhases = (
+				020FA40D6D81A4EB3FE2D67E /* [CP] Check Pods Manifest.lock */,
 				CD15C3F422A526030022F0E5 /* Sources */,
 				CD15C3F522A526030022F0E5 /* Frameworks */,
 				CD15C3F622A526030022F0E5 /* Resources */,
+				1EDF03D10B53ED4F6A8CAA7D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,14 +233,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		020FA40D6D81A4EB3FE2D67E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyVinylCollection-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1EDF03D10B53ED4F6A8CAA7D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CD15C3F422A526030022F0E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD937EB222A6C66F00847B6B /* SearchViewController.swift in Sources */,
+				CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */,
+				CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */,
+				CD937EA422A6770700847B6B /* SmallCoversCollectionViewCell.swift in Sources */,
+				CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */,
+				CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */,
+				CD937EB022A6C66100847B6B /* WantlistViewController.swift in Sources */,
+				CD937EB722A6D1B900847B6B /* BaseViewController.swift in Sources */,
 				CD15C41522A529B20022F0E5 /* RoundedUIView.swift in Sources */,
 				CD15C40422A526030022F0E5 /* MyVinylCollection.xcdatamodeld in Sources */,
+				CD937EAA22A6779F00847B6B /* ListViewTableViewCell.swift in Sources */,
+				CD937EA622A6771C00847B6B /* MediumCoversCollectionViewCell.swift in Sources */,
 				CD15C3FE22A526030022F0E5 /* HomeViewController.swift in Sources */,
+				CD937EA822A6774300847B6B /* LargeCoversCollectionViewCell.swift in Sources */,
+				CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */,
 				CD15C41A22A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift in Sources */,
 				CD15C3FC22A526030022F0E5 /* AppDelegate.swift in Sources */,
 			);
@@ -316,6 +440,7 @@
 		};
 		CD15C40E22A526040022F0E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E067AEEB18BDFF8E737DDA4 /* Pods-MyVinylCollection.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -334,6 +459,7 @@
 		};
 		CD15C40F22A526040022F0E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75A85F0A0CE32B7D9ECF7DA2 /* Pods-MyVinylCollection.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
