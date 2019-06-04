@@ -7,24 +7,66 @@
 //
 
 import UIKit
+import AVFoundation
 
-class BarCodeViewController: BaseViewController {
+class BarCodeViewController: BaseViewController, AVCaptureMetadataOutputObjectsDelegate {
 
+    var session: AVCaptureSession!
+    var previewLayer: AVCaptureVideoPreviewLayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Create a session object.
+        session = AVCaptureSession()
+        
+        // Set the captureDevice.
+        let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        // Create output object.
+        let metadataOutput = AVCaptureMetadataOutput()
+        
+        // Create input object.
+        let videoInput: AVCaptureDeviceInput?
+        
+        do {
+            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice!)
+        } catch {
+            return
+        }
+        
+        // Add input to the session.
+        if (session.canAddInput(videoInput!)) {
+            session.addInput(videoInput!)
+        } else {
+            scanningNotPossible()
+        }
+        
+
+        
+        // Add output to the session.
+        if (session.canAddOutput(metadataOutput)) {
+            session.addOutput(metadataOutput)
+            
+            // Send captured data to the delegate object via a serial queue.
+            metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            
+            // Set barcode type for which to scan: EAN-13.
+            metadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.ean13]
+            
+        } else {
+            scanningNotPossible()
+        }
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func scanningNotPossible() {
+        // Let the user know that scanning isn't possible with the current device.
+        let alert = UIAlertController(title: "Can't Scan.", message: "Let's try a device equipped with a camera.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+        session = nil
     }
-    */
+    
 
 }
