@@ -19,6 +19,9 @@
 		CD652CAD22A6DFD000C16E89 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CAC22A6DFD000C16E89 /* BaseViewController.swift */; };
 		CD652CAF22A7178300C16E89 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CAE22A7178300C16E89 /* BaseTableViewController.swift */; };
 		CD652CB122A7238500C16E89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CB022A7238500C16E89 /* Constants.swift */; };
+		CD652CB422A78C0200C16E89 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CB322A78C0200C16E89 /* DataService.swift */; };
+		CD652CC722A8039A00C16E89 /* Album+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CC522A8039A00C16E89 /* Album+CoreDataClass.swift */; };
+		CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */; };
 		CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */; };
 		CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */; };
 		CD937EA422A6770700847B6B /* SmallCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */; };
@@ -48,6 +51,9 @@
 		CD652CAC22A6DFD000C16E89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CD652CAE22A7178300C16E89 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		CD652CB022A7238500C16E89 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CD652CB322A78C0200C16E89 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		CD652CC522A8039A00C16E89 /* Album+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIButton.swift; sourceTree = "<group>"; };
 		CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCoversCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -112,12 +118,14 @@
 		CD15C3FA22A526030022F0E5 /* MyVinylCollection */ = {
 			isa = PBXGroup;
 			children = (
+				CD652CB522A78FF100C16E89 /* Model */,
 				CD15C3FB22A526030022F0E5 /* AppDelegate.swift */,
 				CD15C40522A526040022F0E5 /* Assets.xcassets */,
 				CD15C3FF22A526030022F0E5 /* Main.storyboard */,
 				CD15C41122A529540022F0E5 /* ViewController */,
 				CD15C41222A529650022F0E5 /* Cells */,
 				CD937EB522A6D1A100847B6B /* Base */,
+				CD652CB222A78B8600C16E89 /* Service */,
 				CD15C41322A529920022F0E5 /* Utils */,
 				CD15C40722A526040022F0E5 /* LaunchScreen.storyboard */,
 				CD15C40A22A526040022F0E5 /* Info.plist */,
@@ -160,6 +168,23 @@
 				CD652CB022A7238500C16E89 /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CD652CB222A78B8600C16E89 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CD652CB322A78C0200C16E89 /* DataService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		CD652CB522A78FF100C16E89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD652CC522A8039A00C16E89 /* Album+CoreDataClass.swift */,
+				CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CD937EB522A6D1A100847B6B /* Base */ = {
@@ -289,8 +314,10 @@
 				CD937EB222A6C66F00847B6B /* SearchViewController.swift in Sources */,
 				CD652CB122A7238500C16E89 /* Constants.swift in Sources */,
 				CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */,
+				CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */,
 				CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */,
 				CD937EA422A6770700847B6B /* SmallCoversCollectionViewCell.swift in Sources */,
+				CD652CC722A8039A00C16E89 /* Album+CoreDataClass.swift in Sources */,
 				CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */,
 				CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */,
 				CD937EB022A6C66100847B6B /* WantlistViewController.swift in Sources */,
@@ -305,6 +332,7 @@
 				CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */,
 				CD15C41A22A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift in Sources */,
 				CD15C3FC22A526030022F0E5 /* AppDelegate.swift in Sources */,
+				CD652CB422A78C0200C16E89 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

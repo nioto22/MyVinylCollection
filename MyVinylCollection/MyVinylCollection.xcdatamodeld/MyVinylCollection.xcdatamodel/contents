@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Album" representedClassName="Album" syncable="YES">
+        <attribute name="albumName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistsId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artistsName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="formatsName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageSmall" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="labelName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tracksURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Album" positionX="-63" positionY="-18" width="128" height="210"/>
+    </elements>
 </model>
