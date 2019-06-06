@@ -10,4 +10,11 @@ import UIKit
 
 class MediumCoversCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var coverImageView: UIImageView!
+    
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
+    @IBOutlet weak var albumNameLabel: UILabel!
+    
+    
 }

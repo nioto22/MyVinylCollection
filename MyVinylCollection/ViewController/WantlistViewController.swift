@@ -7,24 +7,38 @@
 //
 
 import UIKit
+import CoreData
+import CoreLocation
+import AlamofireImage
 
 class WantlistViewController: BaseViewController {
 
+    var wantlistCollection: [Album]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func refreshAllViews(){
+        
     }
-    */
+
+    func refreshWantlistAlbumList(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
+        let typePredicate = NSPredicate(format: "albumInCollection = %@", "false")
+        let sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+        fetchRequest.predicate = typePredicate
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        do {
+            wantlistCollection = try context.fetch(fetchRequest) as? [Album]
+        } catch {
+            print("Context could not send data")
+        }
+        refreshAllViews()
+    }
 
 }

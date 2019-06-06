@@ -46,15 +46,13 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var collectionCollectionView: UICollectionView!
     @IBOutlet weak var wantlistCollectionView: UICollectionView!
     
+    @IBOutlet weak var collectionSegueButton: UIButton!
+    @IBOutlet weak var wantlistSegueButton: UIButton!
+    
     // FOR DATA
     var userCollection: [Album] = []
     var wantlistCollection: [Album] = []
-    enum CollectionType: Int {
-        case collection = 0
-        case wantlist = 1
-    }
-    typealias FinishedDownload = () -> ()
-    let HomeCollectionViewCellIdentifier = "HomeCollectionViewCell"
+    
     
     var userInfo: [String: Any] = [:]
     // userInfoKey
@@ -69,7 +67,16 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
     let buyerStarsNumberKey = "buyerStarsNumberKey"
     let collectionCountKey = "collectionCountKey"
     let wantlistCountKey = "wantlistCountKey"
-    
+    // Static var
+    enum CollectionType: Int {
+        case collection = 0
+        case wantlist = 1
+    }
+    typealias FinishedDownload = () -> ()
+    let HomeCollectionViewCellIdentifier = "HomeCollectionViewCell"
+    //
+    let toCollectionVCSegueIdentifier = "toCollectionVCSegue"
+    let toWantlistVCSegueIdentifier = "toWantlistVCSegue"
     
     
     
@@ -104,6 +111,7 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         refreshCollectionViews()
         setUpUserInformations()
         setUpCollectionsUpperViews()
+        print(userCollection.count)
     }
     
     func refreshCollectionViews(){
@@ -113,9 +121,8 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
     
     func setUpUserInformations(){
         userNameLabel.text = userInfo[self.userPseudoKey] as? String
-        let st = userInfo[self.memberDateKey] as! String
+        let st = userInfo[self.memberDateKey] as? String ?? "2019-01-07"
         let dateSt = st.prefix(10)
-        print(dateSt)
         let memberDateFormated = "Member since : " + dateSt
         userMemberDateLabel.text = memberDateFormated
         let sellerStarsCountD = userInfo[self.sellerStarsNumberKey] as? Double
@@ -263,9 +270,6 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                 }
             }
         } else if (collectionView == self.wantlistCollectionView) {
-            for album in wantlistCollection {
-                print(album.artistsName)
-            }
             cell.wAlbumTitleLabel.text = wantlistCollection[indexPath.row].albumName
             cell.wAlbumArtistLabel.text = wantlistCollection[indexPath.row].artistsName
             if let urlSt = wantlistCollection[indexPath.row].imageSmall {
@@ -277,6 +281,35 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
           return cell
     }
     
+    // MARK: - Navigators
+    
+    @IBAction func toCollectionViewControllerButtonClicked(_ sender: Any) {
+        tabBarController?.selectedIndex = 1
+        //performSegue(withIdentifier: toCollectionVCSegueIdentifier, sender: self)
+    }
+    
+    @IBAction func toWantlistViewControllerButtonClicked(_ sender: Any) {
+        tabBarController?.selectedIndex = 2
+        //performSegue(withIdentifier: toWantlistVCSegueIdentifier, sender: self)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch segue.identifier{
+//        case toCollectionVCSegueIdentifier:
+//            if let collectionVC = segue.destination as? CollectionViewController{
+//                collectionVC.userCollection = self.userCollection
+//            }
+//            break
+//        case toWantlistVCSegueIdentifier:
+//            if let wantlistVC = segue.destination as? WantlistViewController{
+//                wantlistVC.wantlistCollection = self.wantlistCollection
+//            }
+//            break
+//        default:
+//            break
+//        }
+//    }
+        
     
     // MARK: - Discogs Request
     func refreshCollectionAlbumList(){
@@ -292,8 +325,7 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         } catch {
             print("Context could not send data")
         }
-        refreshCollectionViews()
-        
+        refreshAllViews()
     }
     
     func refreshWantlistAlbumList(){
@@ -309,7 +341,7 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         } catch {
             print("Context could not send data")
         }
-        refreshCollectionViews()
+        refreshAllViews()
     }
     
     
@@ -321,7 +353,12 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Album", in: context)
         
-        Alamofire.request(discogsUserCollectionURL)
+        var allPagesIsDone: Bool = false
+        var pageNumber: Int = 1
+        
+        //repeat {
+            let url = discogsUserCollectionURL + String(pageNumber) + "&per_page=100" + DISCOGS_KEY_SECRET_FORMAT
+        Alamofire.request(url)
             .responseJSON { response in
                 // check for errors
                 guard response.result.error == nil else {
@@ -338,6 +375,21 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                         print("Error: \(error)")
                     }
                     return
+                }
+                
+                if let pagination = albumsJsonArray["pagination"] as? [String: Any] {
+                    if let numberOfPage = pagination["pages"] as? Int {
+                        print("success nombre de page = " )
+                        if (pageNumber == numberOfPage) {
+                            allPagesIsDone = true
+                        } else {
+                            pageNumber += 1
+                        }
+                    } else {
+                        print("no pasges")
+                    }
+                } else {
+                    print("pagination")
                 }
                 
                 let arrayGroupName = (type == CollectionType.collection.rawValue) ? "releases" : "wants"
@@ -408,6 +460,9 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                         }
                     }
                 }
+            }
+        //}while allPagesIsDone
+            
                 do {
                     try context.save()
                 } catch {
@@ -419,7 +474,6 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                 } else {
                     self.refreshWantlistAlbumList()
                 }
-        }
     }
     
     func albumAlreadyExists(listType: Int, id: String) -> Album?{
@@ -517,7 +571,6 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                 if let wantlistCount = userInfoJsonArray["num_wantlist"] as? Int {
                     self.userInfo[self.wantlistCountKey] = wantlistCount
                 }
-                
         }
     }
 }
