@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 
 class HomeViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -48,6 +49,10 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
     // FOR DATA
     var userCollection: [Album] = []
     var wantlistCollection: [Album] = []
+    enum CollectionType: Int {
+        case collection = 0
+        case wantlist = 1
+    }
     typealias FinishedDownload = () -> ()
     let HomeCollectionViewCellIdentifier = "HomeCollectionViewCell"
     
@@ -83,7 +88,8 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         wantlistCollectionView.delegate = self
         
         getUserInformation()
-        getUserCollection()
+        getUserCollections(type: CollectionType.collection.rawValue)
+        getUserCollections(type: CollectionType.wantlist.rawValue)
  
     }
     
@@ -246,16 +252,27 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         let cell: homeCollectionViewCell!
         cell = (collectionView == self.collectionCollectionView) ?
             (self.collectionCollectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCellIdentifier, for: indexPath) as! homeCollectionViewCell)
-        : (self.wantlistCollectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCellIdentifier, for: indexPath) as! homeCollectionViewCell)
+            : (self.wantlistCollectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCellIdentifier, for: indexPath) as! homeCollectionViewCell)
+        
         if (collectionView == self.collectionCollectionView){
-            for album in userCollection {
-            }
-            //cell.albumCoverImageView = self.userCollection[indexPath.row].imageSmall
             cell.albumTitleLabel.text = userCollection[indexPath.row].albumName
             cell.albumArtistLabel.text = userCollection[indexPath.row].artistsName
-            
+            if let urlSt = userCollection[indexPath.row].imageSmall {
+                if let imageURL = URL(string: urlSt), let placeholder = UIImage(named: "platinIcon") {
+                    cell.albumCoverImageView.af_setImage(withURL: imageURL, placeholderImage: placeholder) //set image automatically when download compelete.
+                }
+            }
         } else if (collectionView == self.wantlistCollectionView) {
-            
+            for album in wantlistCollection {
+                print(album.artistsName)
+            }
+            cell.wAlbumTitleLabel.text = wantlistCollection[indexPath.row].albumName
+            cell.wAlbumArtistLabel.text = wantlistCollection[indexPath.row].artistsName
+            if let urlSt = wantlistCollection[indexPath.row].imageSmall {
+                if let imageURL = URL(string: urlSt), let placeholder = UIImage(named: "platinIcon") {
+                    cell.wAlbumCoverImageView.af_setImage(withURL: imageURL, placeholderImage: placeholder) //set image automatically when download compelete.
+                }
+            }
         }
           return cell
     }
@@ -266,22 +283,40 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
+        let typePredicate = NSPredicate(format: "albumInCollection = %@", "true")
         let sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+        fetchRequest.predicate = typePredicate
         fetchRequest.sortDescriptors = [sortDescriptor]
         do {
             userCollection = try context.fetch(fetchRequest) as! [Album]
         } catch {
             print("Context could not send data")
         }
-        refreshAllViews()
+        refreshCollectionViews()
         
     }
     
+    func refreshWantlistAlbumList(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
+        let typePredicate = NSPredicate(format: "albumInCollection = %@", "false")
+        let sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+        fetchRequest.predicate = typePredicate
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        do {
+            wantlistCollection = try context.fetch(fetchRequest) as! [Album]
+        } catch {
+            print("Context could not send data")
+        }
+        refreshCollectionViews()
+    }
     
-    func getUserCollection() {
+    
+    func getUserCollections(type: Int) {
         
-        let discogsUserCollectionURL = DISCOGS_USER_COLLECTION_URL
         
+        let discogsUserCollectionURL = (type == CollectionType.collection.rawValue) ? DISCOGS_USER_COLLECTION_URL : DISCOGS_USER_WANTLIST_URL
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Album", in: context)
@@ -305,7 +340,8 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                     return
                 }
                 
-                if let releases = albumsJsonArray["releases"] as? [[String: Any]] {
+                let arrayGroupName = (type == CollectionType.collection.rawValue) ? "releases" : "wants"
+                if let releases = albumsJsonArray[arrayGroupName] as? [[String: Any]] {
                     
                     for release in releases {
                         
@@ -313,11 +349,13 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                             continue
                         }
                         
-                        var album = self.albumAlreadyExists(id: String(albumId))
+                        var album = self.albumAlreadyExists(listType: type, id: String(albumId))
                         if album == nil {
                             album = NSManagedObject(entity: entity!, insertInto: context) as? Album
                             album?.id = String(albumId)
                         }
+                        // AlbumList
+                        album?.albumInCollection = (type == CollectionType.collection.rawValue) ? "true" : "false"
                         // Date Added
                         if let date = release["date_added"] as? String {
                             album?.dateAdded = date
@@ -329,20 +367,20 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                                 album?.albumName = title
                             }
                             // Gp Artists
-                            if let artist = info["artists"] as? [String: Any]{
-                                if let artistName = artist["name"] as? String {
+                            if let artists = info["artists"] as? [[String: Any]]{
+                                if let artistName = artists[0]["name"] as? String {
                                     album?.artistsName = artistName
                                 }
-                                if let artistId = artist["id"] as? Int {
+                                if let artistId = artists[0]["id"] as? Int {
                                     album?.artistsId = String(artistId)
                                 }
                             }
                             // Gp Label
-                            if let labels = info["labels"] as? [String: Any]{
-                                if let labelName = labels["name"] as? String {
+                            if let labels = info["labels"] as? [[String: Any]]{
+                                if let labelName = labels[0]["name"] as? String {
                                     album?.labelName = labelName
                                 }
-                            }
+                            } 
                             // Album year
                             if let year = info["year"] as? Int {
                                 album?.year = String(year)
@@ -365,6 +403,8 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                             if let tracksURL = info["resource_url"] as? String {
                                 album?.tracksURL = tracksURL
                             }
+                        } else {
+                            print("yo ca chie aux infos")
                         }
                     }
                 }
@@ -373,27 +413,50 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                 } catch {
                     print("context could not save data")
                 }
-                self.refreshCollectionAlbumList()
+                
+                if (type == CollectionType.collection.rawValue) {
+                    self.refreshCollectionAlbumList()
+                } else {
+                    self.refreshWantlistAlbumList()
+                }
         }
     }
     
-    func albumAlreadyExists(id: String) -> Album?{
+    func albumAlreadyExists(listType: Int, id: String) -> Album?{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         
-        do {
-            userCollection = try context.fetch(fetchRequest) as! [Album]
-            
-            if (userCollection.count > 0){
-                return userCollection.first
+        let idPredicate = NSPredicate(format: "id == %@", id)
+        let listTypeBool: String = (listType == CollectionType.collection.rawValue) ? "true" : "false"
+        let typePredicate = NSPredicate(format: "albumInCollection = %@", listTypeBool)
+        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [idPredicate, typePredicate])
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
+        fetchRequest.predicate = andPredicate
+        
+        
+        if (listType == CollectionType.collection.rawValue) {
+            do {
+                userCollection = try context.fetch(fetchRequest) as! [Album]
+                
+                if (userCollection.count > 0){
+                    return userCollection.first
+                }
+            } catch {
+                print("context could not save data")
             }
-        } catch {
-            print("context could not save data")
+            return nil
+        } else {
+            do {
+                wantlistCollection = try context.fetch(fetchRequest) as! [Album]
+                
+                if (wantlistCollection.count > 0){
+                    return wantlistCollection.first
+                }
+            } catch {
+                print("context could not save data")
+            }
+            return nil
         }
-        return nil
-
     }
     
     

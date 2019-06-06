@@ -14,4 +14,11 @@ class homeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var albumArtistLabel: UILabel!
     
+    @IBOutlet weak var wAlbumCoverImageView: UIImageView!
+    
+    @IBOutlet weak var wAlbumTitleLabel: UILabel!
+    
+    @IBOutlet weak var wAlbumArtistLabel: UILabel!
+    
+    
 }

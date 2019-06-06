@@ -19,6 +19,7 @@ extension Album {
 
     @NSManaged public var albumName: String?
     @NSManaged public var artistsId: String?
+    @NSManaged public var albumInCollection: String?
     @NSManaged public var artistsName: String?
     @NSManaged public var dateAdded: String?
     @NSManaged public var formatsName: String?
