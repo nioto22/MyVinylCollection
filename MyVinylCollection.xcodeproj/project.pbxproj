@@ -26,6 +26,7 @@
 		CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */; };
 		CD7C77E722AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C77E622AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift */; };
 		CD7C77E922AEB48E00B0E223 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C77E822AEB48E00B0E223 /* NavigationController.swift */; };
+		CD7C77EB22AF1BD000B0E223 /* RoundedUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C77EA22AF1BD000B0E223 /* RoundedUIImageView.swift */; };
 		CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */; };
 		CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */; };
 		CD937EA622A6771C00847B6B /* CollectionCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */; };
@@ -61,6 +62,7 @@
 		CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CD7C77E622AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumDetailViewController+ZoomTransition.swift"; sourceTree = "<group>"; };
 		CD7C77E822AEB48E00B0E223 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		CD7C77EA22AF1BD000B0E223 /* RoundedUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIImageView.swift; sourceTree = "<group>"; };
 		CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIButton.swift; sourceTree = "<group>"; };
 		CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCoversCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				CD15C41922A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift */,
 				CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */,
 				CD652CB022A7238500C16E89 /* Constants.swift */,
+				CD7C77EA22AF1BD000B0E223 /* RoundedUIImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				CD652CC722A8039A00C16E89 /* Album+CoreDataClass.swift in Sources */,
 				CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */,
 				CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */,
+				CD7C77EB22AF1BD000B0E223 /* RoundedUIImageView.swift in Sources */,
 				CD937EB022A6C66100847B6B /* WantlistViewController.swift in Sources */,
 				CD652CAF22A7178300C16E89 /* BaseTableViewController.swift in Sources */,
 				CD652CAD22A6DFD000C16E89 /* BaseViewController.swift in Sources */,

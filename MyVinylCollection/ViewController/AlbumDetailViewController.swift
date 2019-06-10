@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 import AlamofireImage
 
 class AlbumDetailViewController: UIViewController {
 
     var album : Album! = nil
-    
+    var artistImageUrl: String!
     
     @IBOutlet weak var largeImageView: UIImageView!
     
@@ -20,7 +21,8 @@ class AlbumDetailViewController: UIViewController {
     
     
     //Album Detail
-    @IBOutlet weak var roundedViewArtistImage: RoundedUIView!
+    
+    @IBOutlet weak var artistImageView: UIImageView!
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var resleaseDateLabel: UILabel!
@@ -53,6 +55,7 @@ class AlbumDetailViewController: UIViewController {
     func setUpAllAlbumInfoDesign(){
        // ToDo get infos from album.artistId and http request
             // artist image
+        getArtistImage()
         albumTitleLabel.text = album.albumName ?? "Album Name"
         artistNameLabel.text = album.artistsName ?? "Artist Name"
         let releaseDateStartString = " Released in "
@@ -123,6 +126,43 @@ class AlbumDetailViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    
+    // MARK: - Discogs Request
+    func getArtistImage(){
+    let discogsArtistURL = DISCOGS_ARTIST_URL
+    let artistId = album.artistsId ?? "108713"
+    let url = discogsArtistURL + artistId +  DISCOGS_KEY_SECRET_FORMAT2
+        
+    Alamofire.request(url)
+    .responseJSON { response in
+        // check for errors
+        guard response.result.error == nil else {
+            // got an error in getting the data, need to handle it
+            print("error calling GET on /todos/1")
+            print(response.result.error!)
+            return
+        }
+        
+        // make sure we got some JSON since that's what we expect
+        guard let artistInfoJsonArray = response.result.value as? [String: Any] else {
+            print("didn't get todo object as JSON from API")
+            if let error = response.result.error {
+                print("Error: \(error)")
+            }
+            return
+        }
+        if let images = artistInfoJsonArray["images"] as? [[String: Any]] {
+            if let uri = images[0]["uri"] as? String {
+                self.artistImageUrl = uri
+                let imageUrl = URL(string: uri)
+                self.artistImageView.af_setImage(withURL: imageUrl!)
+            } else {
+                print("error image uri")
+            }
+        }
+    }
     }
     
 }
