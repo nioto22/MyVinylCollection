@@ -13,6 +13,7 @@ import UIKit
 let DISCOGS_KEY = "GfQTpbKMrPYFtauHAsge"
 let DISCOGS_SECRET = "hvoGadSLuvAorHpbiZVKVpMynHEqMBsl"
 let DISCOGS_KEY_SECRET_FORMAT = "&key=\(DISCOGS_KEY)&secret=\(DISCOGS_SECRET)"
+let DISCOGS_KEY_SECRET_FORMAT2 = "key=\(DISCOGS_KEY)&secret=\(DISCOGS_SECRET)"
 let DISCOGS_REQUEST_TOKEN = "https://api.discogs.com/oauth/request_token"
 let DISCOGS_AUTHORIZE_URL = "https://www.discogs.com/oauth/authorize"
 let DISCOGS_ACCESS_TOKEN_URL = "https://api.discogs.com/oauth/access_token"
@@ -26,6 +27,5 @@ let DISCOGS_USER_COLLECTION_URL = "https://api.discogs.com/users/nioto/collectio
 let DISCOGS_USER_WANTLIST_URL = "https://api.discogs.com/users/nioto/wants?sort=added&page="
 // GET USER INFORMATION
 let DISCOGS_USER_INFORMATION =  "https://api.discogs.com/users/nioto?key=GfQTpbKMrPYFtauHAsge&secret=hvoGadSLuvAorHpbiZVKVpMynHEqMBsl"
-// "https://api.discogs.com/users/nioto?key=\(DISCOGS_KEY)&secret=\(DISCOGS_SECRET)"
-
-//https://api.discogs.com/users/nioto?key=GfQTpbKMrPYFtauHAsge&secret=hvoGadSLuvAorHpbiZVKVpMynHEqMBsl
+// GET RELEASE INFORMATION
+let DISCOGS_RELEASE_URL = "https://api.discogs.com/releases/"
