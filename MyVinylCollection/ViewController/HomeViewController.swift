@@ -52,6 +52,7 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
     // FOR DATA
     var userCollection: [Album] = []
     var wantlistCollection: [Album] = []
+    var albumClicked: Album! = nil
     
     
     var userInfo: [String: Any] = [:]
@@ -74,10 +75,10 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
     }
     typealias FinishedDownload = () -> ()
     let HomeCollectionViewCellIdentifier = "HomeCollectionViewCell"
-    //
-    let toCollectionVCSegueIdentifier = "toCollectionVCSegue"
-    let toWantlistVCSegueIdentifier = "toWantlistVCSegue"
+    // Segue Id
+    let toAlbumDetailSegueIdentifier = "toAlbumDetailSegue"
     
+
     
     
     override func viewDidLoad() {
@@ -279,6 +280,21 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
           return cell
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        albumClicked = (collectionView == self.collectionCollectionView) ? userCollection[indexPath.row] : wantlistCollection[indexPath.row]
+        let cell: homeCollectionViewCell!
+        if (collectionView == self.collectionCollectionView){
+            cell  = collectionCollectionView.cellForItem(at: indexPath) as? homeCollectionViewCell
+        } else {
+            cell = wantlistCollectionView.cellForItem(at: indexPath) as? homeCollectionViewCell
+        }
+        selectedImageView = cell.albumCoverImageView
+        
+        performSegue(withIdentifier: toAlbumDetailSegueIdentifier, sender: self)
+    }
+    
+    
     // MARK: - Navigators
     
     @IBAction func toCollectionViewControllerButtonClicked(_ sender: Any) {
@@ -291,22 +307,20 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         //performSegue(withIdentifier: toWantlistVCSegueIdentifier, sender: self)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        switch segue.identifier{
-//        case toCollectionVCSegueIdentifier:
-//            if let collectionVC = segue.destination as? CollectionViewController{
-//                collectionVC.userCollection = self.userCollection
-//            }
-//            break
-//        case toWantlistVCSegueIdentifier:
-//            if let wantlistVC = segue.destination as? WantlistViewController{
-//                wantlistVC.wantlistCollection = self.wantlistCollection
-//            }
-//            break
-//        default:
-//            break
-//        }
-//    }
+    // MARK: - Navigators
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier{
+        case toAlbumDetailSegueIdentifier:
+            if let albumDetailVC = segue.destination as? AlbumDetailViewController{
+                albumDetailVC.album = albumClicked
+                albumDetailVC.largeImageView = selectedImageView
+            }
+            break
+        default:
+            break
+        }
+    }
         
     
     // MARK: - Discogs Request

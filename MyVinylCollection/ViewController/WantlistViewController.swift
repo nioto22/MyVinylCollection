@@ -44,6 +44,7 @@ class WantlistViewController: BaseViewController,  UICollectionViewDataSource, U
     
     var albumClicked: Album! = nil
     
+
     
     
     
@@ -230,9 +231,13 @@ class WantlistViewController: BaseViewController,  UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         albumClicked = isSearchActivated() ? filteredUserCollection[indexPath.row] : userCollection[indexPath.row]
-        print(albumClicked.id ?? "")
+        let cell = wCollectionView.cellForItem(at: indexPath) as! WantlistCollectionViewCell
+        selectedImageView = cell.coverImageView
+        
         performSegue(withIdentifier: toAlbumDetailSegueIdentifier, sender: self)
     }
+    
+    
     
     // MARK: - UISearchController
     
@@ -270,6 +275,7 @@ class WantlistViewController: BaseViewController,  UICollectionViewDataSource, U
         case toAlbumDetailSegueIdentifier:
             if let albumDetailVC = segue.destination as? AlbumDetailViewController{
                 albumDetailVC.album = albumClicked
+                albumDetailVC.largeImageView = selectedImageView
             }
             break
         default:

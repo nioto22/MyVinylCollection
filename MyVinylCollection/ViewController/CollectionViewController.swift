@@ -46,6 +46,8 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     
     var albumClicked: Album! = nil
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -227,6 +229,9 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         albumClicked = isSearchActivated() ? filteredUserCollection[indexPath.row] : userCollection[indexPath.row]
         print(albumClicked.id ?? "")
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionCoversCollectionViewCell
+        selectedImageView = cell.coverImageView
+        
         performSegue(withIdentifier: toAlbumDetailSegueIdentifier, sender: self)
     }
     
@@ -266,6 +271,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
                 case toAlbumDetailSegueIdentifier:
                     if let albumDetailVC = segue.destination as? AlbumDetailViewController{
                        albumDetailVC.album = albumClicked
+                        albumDetailVC.largeImageView = selectedImageView
                     }
                     break
                 default:

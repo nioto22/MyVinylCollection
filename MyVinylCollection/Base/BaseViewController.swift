@@ -10,6 +10,9 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+    // ZoomTransition
+    var selectedImageView: UIImageView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

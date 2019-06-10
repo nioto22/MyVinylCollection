@@ -7,26 +7,31 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class AlbumDetailViewController: UIViewController {
 
     var album : Album! = nil
     
+    
+    @IBOutlet weak var largeImageView: UIImageView!
+    
+    @IBOutlet weak var smallImageView1: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //smallImageView1.isHidden = true
+        //getLargeImageView()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getLargeImageView(){
+        if let urlSt = album.image {
+            if let imageURL = URL(string: urlSt) {
+                largeImageView.af_setImage(withURL: imageURL)
+            }
+        }
     }
-    */
+
 
 }

@@ -17,12 +17,15 @@
 		CD15C40922A526040022F0E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD15C40722A526040022F0E5 /* LaunchScreen.storyboard */; };
 		CD15C41522A529B20022F0E5 /* RoundedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C41422A529B20022F0E5 /* RoundedUIView.swift */; };
 		CD15C41A22A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C41922A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift */; };
+		CD3DD58122AEAF320069DD9A /* BaseViewController+ZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3DD58022AEAF320069DD9A /* BaseViewController+ZoomTransition.swift */; };
 		CD652CAD22A6DFD000C16E89 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CAC22A6DFD000C16E89 /* BaseViewController.swift */; };
 		CD652CAF22A7178300C16E89 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CAE22A7178300C16E89 /* BaseTableViewController.swift */; };
 		CD652CB122A7238500C16E89 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CB022A7238500C16E89 /* Constants.swift */; };
 		CD652CB422A78C0200C16E89 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CB322A78C0200C16E89 /* DataService.swift */; };
 		CD652CC722A8039A00C16E89 /* Album+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CC522A8039A00C16E89 /* Album+CoreDataClass.swift */; };
 		CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */; };
+		CD7C77E722AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C77E622AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift */; };
+		CD7C77E922AEB48E00B0E223 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C77E822AEB48E00B0E223 /* NavigationController.swift */; };
 		CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */; };
 		CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */; };
 		CD937EA622A6771C00847B6B /* CollectionCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */; };
@@ -49,12 +52,15 @@
 		CD15C40A22A526040022F0E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD15C41422A529B20022F0E5 /* RoundedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIView.swift; sourceTree = "<group>"; };
 		CD15C41922A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+MyVinylCollection.swift"; sourceTree = "<group>"; };
+		CD3DD58022AEAF320069DD9A /* BaseViewController+ZoomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+ZoomTransition.swift"; sourceTree = "<group>"; };
 		CD652CAC22A6DFD000C16E89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CD652CAE22A7178300C16E89 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		CD652CB022A7238500C16E89 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CD652CB322A78C0200C16E89 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CD652CC522A8039A00C16E89 /* Album+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CD7C77E622AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlbumDetailViewController+ZoomTransition.swift"; sourceTree = "<group>"; };
+		CD7C77E822AEB48E00B0E223 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIButton.swift; sourceTree = "<group>"; };
 		CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCoversCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -192,6 +198,9 @@
 			children = (
 				CD652CAC22A6DFD000C16E89 /* BaseViewController.swift */,
 				CD652CAE22A7178300C16E89 /* BaseTableViewController.swift */,
+				CD3DD58022AEAF320069DD9A /* BaseViewController+ZoomTransition.swift */,
+				CD7C77E622AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift */,
+				CD7C77E822AEB48E00B0E223 /* NavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -318,6 +327,8 @@
 				CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */,
 				CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */,
 				CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */,
+				CD7C77E922AEB48E00B0E223 /* NavigationController.swift in Sources */,
+				CD7C77E722AEB38800B0E223 /* AlbumDetailViewController+ZoomTransition.swift in Sources */,
 				CD652CC722A8039A00C16E89 /* Album+CoreDataClass.swift in Sources */,
 				CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */,
 				CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */,
@@ -331,6 +342,7 @@
 				CD15C3FE22A526030022F0E5 /* HomeViewController.swift in Sources */,
 				CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */,
 				CD15C41A22A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift in Sources */,
+				CD3DD58122AEAF320069DD9A /* BaseViewController+ZoomTransition.swift in Sources */,
 				CD15C3FC22A526030022F0E5 /* AppDelegate.swift in Sources */,
 				CD652CB422A78C0200C16E89 /* DataService.swift in Sources */,
 			);
