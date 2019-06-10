@@ -25,15 +25,14 @@
 		CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */; };
 		CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */; };
 		CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */; };
-		CD937EA422A6770700847B6B /* SmallCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */; };
-		CD937EA622A6771C00847B6B /* MediumCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA522A6771C00847B6B /* MediumCoversCollectionViewCell.swift */; };
-		CD937EA822A6774300847B6B /* LargeCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA722A6774300847B6B /* LargeCoversCollectionViewCell.swift */; };
+		CD937EA622A6771C00847B6B /* CollectionCoversCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */; };
 		CD937EAA22A6779F00847B6B /* ListViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EA922A6779F00847B6B /* ListViewTableViewCell.swift */; };
 		CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EAB22A6A42000847B6B /* LoginViewController.swift */; };
 		CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EAD22A6C65400847B6B /* CollectionViewController.swift */; };
 		CD937EB022A6C66100847B6B /* WantlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EAF22A6C66100847B6B /* WantlistViewController.swift */; };
 		CD937EB222A6C66F00847B6B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EB122A6C66F00847B6B /* SearchViewController.swift */; };
 		CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD937EB322A6C67B00847B6B /* BarCodeViewController.swift */; };
+		CDFDF8B722AE9970004FA56E /* WantlistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF8B622AE9970004FA56E /* WantlistCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,15 +57,14 @@
 		CD652CC622A8039A00C16E89 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD937EA122A66D0C00847B6B /* RoundedUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIButton.swift; sourceTree = "<group>"; };
-		CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCoversCollectionViewCell.swift; sourceTree = "<group>"; };
-		CD937EA522A6771C00847B6B /* MediumCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCoversCollectionViewCell.swift; sourceTree = "<group>"; };
-		CD937EA722A6774300847B6B /* LargeCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCoversCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCoversCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD937EA922A6779F00847B6B /* ListViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewTableViewCell.swift; sourceTree = "<group>"; };
 		CD937EAB22A6A42000847B6B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CD937EAD22A6C65400847B6B /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		CD937EAF22A6C66100847B6B /* WantlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantlistViewController.swift; sourceTree = "<group>"; };
 		CD937EB122A6C66F00847B6B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CD937EB322A6C67B00847B6B /* BarCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeViewController.swift; sourceTree = "<group>"; };
+		CDFDF8B622AE9970004FA56E /* WantlistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantlistCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE5F00575BE2B37615EE38F7 /* Pods_MyVinylCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyVinylCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -154,10 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				CD937E9F22A660BD00847B6B /* homeCollectionViewCell.swift */,
-				CD937EA322A6770700847B6B /* SmallCoversCollectionViewCell.swift */,
-				CD937EA522A6771C00847B6B /* MediumCoversCollectionViewCell.swift */,
-				CD937EA722A6774300847B6B /* LargeCoversCollectionViewCell.swift */,
+				CD937EA522A6771C00847B6B /* CollectionCoversCollectionViewCell.swift */,
 				CD937EA922A6779F00847B6B /* ListViewTableViewCell.swift */,
+				CDFDF8B622AE9970004FA56E /* WantlistCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -314,13 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDFDF8B722AE9970004FA56E /* WantlistCollectionViewCell.swift in Sources */,
 				CD937EB222A6C66F00847B6B /* SearchViewController.swift in Sources */,
 				CD652CB122A7238500C16E89 /* Constants.swift in Sources */,
 				CD0D3A2A22AE4EFB00D1BEA8 /* AlbumDetailViewController.swift in Sources */,
 				CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */,
 				CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */,
 				CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */,
-				CD937EA422A6770700847B6B /* SmallCoversCollectionViewCell.swift in Sources */,
 				CD652CC722A8039A00C16E89 /* Album+CoreDataClass.swift in Sources */,
 				CD937EA222A66D0C00847B6B /* RoundedUIButton.swift in Sources */,
 				CD937EB422A6C67B00847B6B /* BarCodeViewController.swift in Sources */,
@@ -330,9 +327,8 @@
 				CD15C41522A529B20022F0E5 /* RoundedUIView.swift in Sources */,
 				CD15C40422A526030022F0E5 /* MyVinylCollection.xcdatamodeld in Sources */,
 				CD937EAA22A6779F00847B6B /* ListViewTableViewCell.swift in Sources */,
-				CD937EA622A6771C00847B6B /* MediumCoversCollectionViewCell.swift in Sources */,
+				CD937EA622A6771C00847B6B /* CollectionCoversCollectionViewCell.swift in Sources */,
 				CD15C3FE22A526030022F0E5 /* HomeViewController.swift in Sources */,
-				CD937EA822A6774300847B6B /* LargeCoversCollectionViewCell.swift in Sources */,
 				CD937EA022A660BD00847B6B /* homeCollectionViewCell.swift in Sources */,
 				CD15C41A22A57C7A0022F0E5 /* UIColor+MyVinylCollection.swift in Sources */,
 				CD15C3FC22A526030022F0E5 /* AppDelegate.swift in Sources */,

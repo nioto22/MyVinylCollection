@@ -11,19 +11,21 @@ import CoreData
 import CoreLocation
 import AlamofireImage
 
-class CollectionViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CollectionViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
 
-    @IBOutlet weak var searchBar: UITextField!
+ 
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var layoutButtonLabel: UILabel!
     @IBOutlet weak var sortingButtonLabel: UILabel!
     
     var userCollection: [Album]! = []
+    var filteredUserCollection: [Album]! = []
 
     var cellSize: CGSize!
-    let coverCollectionViewCellIdentifier = "CoverCollectionViewCell"
+    let coverCollectionViewCellIdentifier = "CollectionCollectionViewCell"
     let toAlbumDetailSegueIdentifier = "toAlbumDetailSegue"
     
     var layoutChoosen: Int!
@@ -188,7 +190,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
         return sortDescriptor
     }
     
-
+    
     // MARK: - CollectionView Methods
     
     func configureCollectionViewLayout(type: Int){
@@ -206,14 +208,14 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userCollection.count
+        return isSearchActivated() ? filteredUserCollection.count : userCollection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: coverCollectionViewCellIdentifier, for: indexPath) as! MediumCoversCollectionViewCell
-        cell.albumNameLabel.text = userCollection[indexPath.row].albumName
-        cell.artistNameLabel.text = userCollection[indexPath.row].artistsName
-        if let urlSt = userCollection[indexPath.row].imageSmall {
+        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: coverCollectionViewCellIdentifier, for: indexPath) as! CollectionCoversCollectionViewCell
+        cell.albumNameLabel.text = isSearchActivated() ? filteredUserCollection[indexPath.row].albumName : userCollection[indexPath.row].albumName
+        cell.artistNameLabel.text = isSearchActivated() ? filteredUserCollection[indexPath.row].artistsName : userCollection[indexPath.row].artistsName
+        if let urlSt = isSearchActivated() ? filteredUserCollection[indexPath.row].imageSmall : userCollection[indexPath.row].imageSmall {
             if let imageURL = URL(string: urlSt), let placeholder = UIImage(named: "platinIcon") {
                 cell.coverImageView.af_setImage(withURL: imageURL, placeholderImage: placeholder) //set image automatically when download compelete.
             }
@@ -223,12 +225,40 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        albumClicked = userCollection[indexPath.row]
+        albumClicked = isSearchActivated() ? filteredUserCollection[indexPath.row] : userCollection[indexPath.row]
         print(albumClicked.id ?? "")
         performSegue(withIdentifier: toAlbumDetailSegueIdentifier, sender: self)
     }
     
-
+    // MARK: - UISearchController
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContent(for searchText: String) {
+        // Update the searchResults array with matches
+        // in our entries based on the title value.
+        if let searchText = searchBar.text, !searchText.isEmpty {
+            filteredUserCollection = userCollection.filter{
+                album in
+                return (album.albumName!.lowercased().contains(searchText.lowercased()) || album.artistsName!.lowercased().contains(searchText.lowercased()))
+            }
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        if let searchText = searchBar.text {
+            filterContent(for: searchText)
+            // Reload the table view with the search result data.
+            collectionView.reloadData()
+        }
+    }
+    
+    func isSearchActivated() -> Bool {
+        return !searchBarIsEmpty()
+    }
+    
     // MARK: - Navigators
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
