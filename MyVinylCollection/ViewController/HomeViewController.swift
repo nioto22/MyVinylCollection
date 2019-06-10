@@ -97,7 +97,6 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         getUserInformation()
         getUserCollections(type: CollectionType.collection.rawValue)
         getUserCollections(type: CollectionType.wantlist.rawValue)
- 
     }
     
 
@@ -111,7 +110,6 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         refreshCollectionViews()
         setUpUserInformations()
         setUpCollectionsUpperViews()
-        print(userCollection.count)
     }
     
     func refreshCollectionViews(){
@@ -353,8 +351,8 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Album", in: context)
         
-        var allPagesIsDone: Bool = false
-        var pageNumber: Int = 1
+//          var allPagesIsDone: Bool = false
+          var pageNumber: Int = 1
         
         //repeat {
             let url = discogsUserCollectionURL + String(pageNumber) + "&per_page=100" + DISCOGS_KEY_SECRET_FORMAT
@@ -377,26 +375,20 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                     return
                 }
                 
-                if let pagination = albumsJsonArray["pagination"] as? [String: Any] {
-                    if let numberOfPage = pagination["pages"] as? Int {
-                        print("success nombre de page = " )
-                        if (pageNumber == numberOfPage) {
-                            allPagesIsDone = true
-                        } else {
-                            pageNumber += 1
-                        }
-                    } else {
-                        print("no pasges")
-                    }
-                } else {
-                    print("pagination")
-                }
+//                if let pagination = albumsJsonArray["pagination"] as? [String: Any] {
+//                    if let numberOfPage = pagination["pages"] as? Int {
+//                        if (pageNumber == numberOfPage) {
+//                            allPagesIsDone = true
+//                        } else {
+//                            pageNumber += 1
+//                        }
+//                    }
+//                }
                 
                 let arrayGroupName = (type == CollectionType.collection.rawValue) ? "releases" : "wants"
                 if let releases = albumsJsonArray[arrayGroupName] as? [[String: Any]] {
                     
                     for release in releases {
-                        
                         guard let albumId = release["id"] as? Int else {
                             continue
                         }
@@ -455,14 +447,9 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                             if let tracksURL = info["resource_url"] as? String {
                                 album?.tracksURL = tracksURL
                             }
-                        } else {
-                            print("yo ca chie aux infos")
                         }
                     }
                 }
-            }
-        //}while allPagesIsDone
-            
                 do {
                     try context.save()
                 } catch {
@@ -474,6 +461,10 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
                 } else {
                     self.refreshWantlistAlbumList()
                 }
+            }
+        //}while allPagesIsDone
+            
+        
     }
     
     func albumAlreadyExists(listType: Int, id: String) -> Album?{

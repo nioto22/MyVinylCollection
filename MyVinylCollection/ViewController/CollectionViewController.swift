@@ -21,60 +21,127 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     @IBOutlet weak var sortingButtonLabel: UILabel!
     
     var userCollection: [Album]! = []
-    var layoutChoosen: Int!
+
     var cellSize: CGSize!
     let coverCollectionViewCellIdentifier = "CoverCollectionViewCell"
+    let toAlbumDetailSegueIdentifier = "toAlbumDetailSegue"
+    
+    var layoutChoosen: Int!
     enum layoutType: Int {
         case ListView = 0
         case SmallCover = 1
         case MediumCover = 2
         case LargeCover = 3
     }
+    var sortingTypeChoosen: String!
+    enum sortingType: String {
+        case TitleAZ = "Title (A-Z)"
+        case TitleZA = "Title (Z-A)"
+        case ArtistAZ = "Artist (A-Z)"
+        case ArtistZA = "Artist (Z-A)"
+        case NewestAdded = "Newest Added"
+    }
+    
+    var albumClicked: Album! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         // TODO get user defaults preferences on cover size
         layoutChoosen = layoutType.SmallCover.rawValue
-        configureCollectionViewLayout(type: layoutChoosen)
+        layoutButtonLabel.text = "Small Covers"
+        sortingTypeChoosen = sortingType.NewestAdded.rawValue
+        sortingButtonLabel.text = sortingTypeChoosen
+        
         
         refreshCollectionAlbumList()
+
     }
     
     func refreshAllViews(){
-        configureCollectionViewLayout(type: layoutChoosen)
         collectionView.reloadData()
-        print(userCollection.count)
     }
     
     // MARK: - Action Methods
     
     @IBAction func layoutSizeButtonClicked(_ sender: Any) {
-        switch layoutChoosen {
+        showAlertLayoutTypeBox()
+    }
+    
+    @IBAction func sortingButtonClicked(_ sender: Any) {
+        showAlertSortingTypeBox()
+    }
+
+    
+    func showAlertLayoutTypeBox(){
+    let alert = UIAlertController(title: "Select layout", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "List View", style: .default, handler: { action in
+            self.changingLayout(0)
+        }))
+        alert.addAction(UIAlertAction(title: "Small Covers", style: .default, handler: { action in
+            self.changingLayout(1)
+        }))
+        alert.addAction(UIAlertAction(title: "Medium Covers", style: .default, handler: { action in
+            self.changingLayout(2)
+        }))
+        alert.addAction(UIAlertAction(title: "Large Covers", style: .default, handler: { action in
+            self.changingLayout(3)
+        }))
+    
+    self.present(alert, animated: true)
+    }
+    
+    func showAlertSortingTypeBox() {
+        let alert = UIAlertController(title: "Sort by", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Album Title    (A-Z)", style: .default, handler: { action in
+            self.changingSort(sortingType.TitleAZ.rawValue)
+        }))
+        alert.addAction(UIAlertAction(title: "Album Title    (Z-A)", style: .default, handler: { action in
+            self.changingSort(sortingType.TitleZA.rawValue)
+        }))
+        alert.addAction(UIAlertAction(title: "Artist Name    (A-Z)", style: .default, handler: { action in
+            self.changingSort(sortingType.ArtistAZ.rawValue)
+        }))
+        alert.addAction(UIAlertAction(title: "Artist Name    (Z-A)", style: .default, handler: { action in
+            self.changingSort(sortingType.ArtistZA.rawValue)
+        }))
+        alert.addAction(UIAlertAction(title: "Newest Added", style: .default, handler: { action in
+            self.changingSort(sortingType.NewestAdded.rawValue)
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func changingLayout(_ type: Int){
+        switch type {
         case 0:
-            layoutChoosen += 1
-            layoutButtonLabel.text = "Small Covers"
-            break
-        case 1:
-            layoutChoosen += 1
-            layoutButtonLabel.text = "Medium Covers"
-            break
-        case 2:
-            layoutChoosen += 1
-            layoutButtonLabel.text = "Large Covers"
-            break
-        case 3:
             layoutChoosen = 0
             layoutButtonLabel.text = "List View"
+            break
+        case 1:
+            layoutChoosen = 1
+            layoutButtonLabel.text = "Small Covers"
+            break
+        case 2:
+            layoutChoosen = 2
+            layoutButtonLabel.text = "Medium Covers"
+            break
+        case 3:
+            layoutChoosen = 3
+            layoutButtonLabel.text = "Large Covers"
             break
         default:
             break
         }
         refreshAllViews()
-        
     }
     
-    @IBAction func sortingButtonClicked(_ sender: Any) {
+    func changingSort(_ type: String){
+            sortingTypeChoosen = type
+            sortingButtonLabel.text = type
+        refreshCollectionAlbumList()
+        refreshAllViews()
     }
     
     func refreshCollectionAlbumList(){
@@ -82,9 +149,10 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Album")
         let typePredicate = NSPredicate(format: "albumInCollection = %@", "true")
-        let sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+        //let sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+        let sortDescriptor = getSortType()
         fetchRequest.predicate = typePredicate
-        //fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = [sortDescriptor]
         do {
             userCollection = try context.fetch(fetchRequest) as? [Album]
         } catch {
@@ -92,6 +160,34 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
         }
         refreshAllViews()
     }
+    
+    
+    func getSortType() -> NSSortDescriptor {
+        let sortDescriptor: NSSortDescriptor!
+        
+        switch sortingTypeChoosen {
+        case sortingType.TitleAZ.rawValue :
+            sortDescriptor = NSSortDescriptor(key: "albumName", ascending: true)
+            break
+        case sortingType.TitleZA.rawValue :
+            sortDescriptor = NSSortDescriptor(key: "albumName", ascending: false)
+            break
+        case sortingType.ArtistAZ.rawValue :
+            sortDescriptor = NSSortDescriptor(key: "artistsName", ascending: true)
+            break
+        case sortingType.ArtistZA.rawValue :
+            sortDescriptor = NSSortDescriptor(key: "artistsName", ascending: false)
+            break
+        case sortingType.NewestAdded.rawValue :
+            sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+            break
+        default :
+            sortDescriptor = NSSortDescriptor(key: "dateAdded", ascending: false)
+            break
+        }
+        return sortDescriptor
+    }
+    
 
     // MARK: - CollectionView Methods
     
@@ -100,15 +196,13 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
         let dividSize = (type == 1) ? 4 : (type == 2) ? 3 : 2
         let cellWidth = (Double(layout.collectionViewContentSize.width)/Double(dividSize))
         let cellHeight = cellWidth
-        
-
         cellSize = CGSize(width: cellWidth, height: cellHeight)
         
         let spLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         spLayout.itemSize = cellSize
         spLayout.minimumLineSpacing = 0
         spLayout.minimumInteritemSpacing = 0
-        collectionView.reloadData()
+        //collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -124,13 +218,29 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
                 cell.coverImageView.af_setImage(withURL: imageURL, placeholderImage: placeholder) //set image automatically when download compelete.
             }
         }
+        configureCollectionViewLayout(type: layoutChoosen)
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        albumClicked = userCollection[indexPath.row]
+        print(albumClicked.id ?? "")
+        performSegue(withIdentifier: toAlbumDetailSegueIdentifier, sender: self)
+    }
+    
 
-
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return cellSize
-//    }
+    // MARK: - Navigators
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                switch segue.identifier{
+                case toAlbumDetailSegueIdentifier:
+                    if let albumDetailVC = segue.destination as? AlbumDetailViewController{
+                       albumDetailVC.album = albumClicked
+                    }
+                    break
+                default:
+                    break
+                }
+            }
     
 }

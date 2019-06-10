@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B1E1FBEDEAA77AAECC194810 /* Pods_MyVinylCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5F00575BE2B37615EE38F7 /* Pods_MyVinylCollection.framework */; };
+		CD0D3A2A22AE4EFB00D1BEA8 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D3A2922AE4EFB00D1BEA8 /* AlbumDetailViewController.swift */; };
 		CD15C3FC22A526030022F0E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C3FB22A526030022F0E5 /* AppDelegate.swift */; };
 		CD15C3FE22A526030022F0E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD15C3FD22A526030022F0E5 /* HomeViewController.swift */; };
 		CD15C40122A526030022F0E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD15C3FF22A526030022F0E5 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		2E067AEEB18BDFF8E737DDA4 /* Pods-MyVinylCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyVinylCollection.debug.xcconfig"; path = "Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection.debug.xcconfig"; sourceTree = "<group>"; };
 		75A85F0A0CE32B7D9ECF7DA2 /* Pods-MyVinylCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyVinylCollection.release.xcconfig"; path = "Target Support Files/Pods-MyVinylCollection/Pods-MyVinylCollection.release.xcconfig"; sourceTree = "<group>"; };
+		CD0D3A2922AE4EFB00D1BEA8 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		CD15C3F822A526030022F0E5 /* MyVinylCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyVinylCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD15C3FB22A526030022F0E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD15C3FD22A526030022F0E5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				CD937EAF22A6C66100847B6B /* WantlistViewController.swift */,
 				CD937EB122A6C66F00847B6B /* SearchViewController.swift */,
 				CD937EB322A6C67B00847B6B /* BarCodeViewController.swift */,
+				CD0D3A2922AE4EFB00D1BEA8 /* AlbumDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			files = (
 				CD937EB222A6C66F00847B6B /* SearchViewController.swift in Sources */,
 				CD652CB122A7238500C16E89 /* Constants.swift in Sources */,
+				CD0D3A2A22AE4EFB00D1BEA8 /* AlbumDetailViewController.swift in Sources */,
 				CD937EAE22A6C65400847B6B /* CollectionViewController.swift in Sources */,
 				CD652CC822A8039A00C16E89 /* Album+CoreDataProperties.swift in Sources */,
 				CD937EAC22A6A42000847B6B /* LoginViewController.swift in Sources */,

@@ -25,5 +25,7 @@ let DISCOGS_USER_COLLECTION_URL = "https://api.discogs.com/users/nioto/collectio
 // GET USER WANTLIST
 let DISCOGS_USER_WANTLIST_URL = "https://api.discogs.com/users/nioto/wants?sort=added&page="
 // GET USER INFORMATION
-let DISCOGS_USER_INFORMATION = "https://api.discogs.com/users/nioto?key=\(DISCOGS_KEY)&secret=\(DISCOGS_SECRET)"
+let DISCOGS_USER_INFORMATION =  "https://api.discogs.com/users/nioto?key=GfQTpbKMrPYFtauHAsge&secret=hvoGadSLuvAorHpbiZVKVpMynHEqMBsl"
+// "https://api.discogs.com/users/nioto?key=\(DISCOGS_KEY)&secret=\(DISCOGS_SECRET)"
 
+//https://api.discogs.com/users/nioto?key=GfQTpbKMrPYFtauHAsge&secret=hvoGadSLuvAorHpbiZVKVpMynHEqMBsl
