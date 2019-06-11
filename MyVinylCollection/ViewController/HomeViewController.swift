@@ -307,6 +307,11 @@ class HomeViewController: BaseViewController, UICollectionViewDataSource, UIColl
         //performSegue(withIdentifier: toWantlistVCSegueIdentifier, sender: self)
     }
     
+    
+    @IBAction func toSearchBarCodeButtonClicked(_ sender: Any) {
+        tabBarController?.selectedIndex = 3
+    }
+    
     // MARK: - Navigators
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -30,7 +30,7 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     
     var layoutChoosen: Int!
     enum layoutType: Int {
-        case ListView = 0
+        //case ListView = 0
         case SmallCover = 1
         case MediumCover = 2
         case LargeCover = 3
@@ -80,9 +80,9 @@ class CollectionViewController: BaseViewController, UICollectionViewDataSource, 
     
     func showAlertLayoutTypeBox(){
     let alert = UIAlertController(title: "Select layout", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "List View", style: .default, handler: { action in
-            self.changingLayout(0)
-        }))
+//        alert.addAction(UIAlertAction(title: "List View", style: .default, handler: { action in
+//            self.changingLayout(0)
+//        }))
         alert.addAction(UIAlertAction(title: "Small Covers", style: .default, handler: { action in
             self.changingLayout(1)
         }))
